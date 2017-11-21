@@ -7,7 +7,7 @@ if (isset($_POST['registro'])) {
 
 if (isset($_POST['login'])) {
     // TODO 7: Comprobar captcha
-
+if($_SESSION['CAPTCHA']=== $_POST['valor']){
     include ("includes/abrirbd.php");
     $sql = "SELECT * FROM usuarios WHERE user ='{$_POST['user']}'";
     $resultado = mysqli_query($link, $sql);
@@ -31,6 +31,9 @@ if (isset($_POST['login'])) {
         header("Location: NoAuth.php");
     }
     mysqli_close($link);
+}else{
+    header("Location: login.php");
+}
 } else {
     ?>
     <html>
@@ -55,6 +58,8 @@ if (isset($_POST['login'])) {
                         <td> <input type = password name ='passwd'></td>
                     </tr>
                 </table><br>
+                <img src= captcha.php>
+                <input type= text name= 'valor'>
                 <input type=submit name = 'login' value = "LOGIN"><br><br><br>
             </form>
         </center>
