@@ -1,6 +1,12 @@
 <?php
 // TODO 5: Comprobar autenticación del usuario
+session_start();
+include ("includes/autenticado.php");
 // TODO 6: Comprobar autorización del usuario
+if (!(isset($_SESSION) && array_key_exists('permisos', $_SESSION) && is_array($_SESSION['permisos']) && ($_SESSION['permisos'][5] === 'S'))) {
+    header("Location:../login.php");
+    exit;
+}
 ?>
 <html>
     <head>

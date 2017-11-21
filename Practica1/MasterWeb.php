@@ -1,5 +1,7 @@
 <?php
 	// TODO 5: Comprobar autenticación del usuario
+	session_start();
+    include ("includes/autenticado.php");
 ?>
 <html>
     <head>

@@ -15,7 +15,8 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($resultado) == 1) {
         $usuario = mysqli_fetch_assoc($resultado);
         // TODO 3 Comprobar el password de entrada con el de la BD
-        if (false) {
+        $hash = hash("sha256", $_POST['passwd'] . $usuario['salt'], false);
+                if ($hash === $usuario['password']) {
             // TODO 3 La condición del if es que el password sea correcto 	
             $_SESSION['autenticado'] = 'correcto';
             $_SESSION['permisos'] = str_split($usuario['permisos']);
