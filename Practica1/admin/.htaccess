@@ -1,0 +1,12 @@
+AuthType Basic
+AuthName "Acceso a recursos"
+AuthBasicProvider file
+AuthUserFile D:\xampp\apache\conf\passw
+Require valid-user
+
+
+
+
+
+
+
