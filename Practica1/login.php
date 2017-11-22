@@ -7,7 +7,7 @@ if (isset($_POST['registro'])) {
 
 if (isset($_POST['login'])) {
     // TODO 7: Comprobar captcha
-
+if($_SESSION['CAPTCHA']=== $_POST['valor']){
     include ("includes/abrirbd.php");
     $sql = "SELECT * FROM usuarios WHERE user ='{$_POST['user']}'";
     $resultado = mysqli_query($link, $sql);
@@ -15,7 +15,8 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($resultado) == 1) {
         $usuario = mysqli_fetch_assoc($resultado);
         // TODO 3 Comprobar el password de entrada con el de la BD
-        if (false) {
+        $hash = hash("sha256", $_POST['passwd'] . $usuario['salt'], false);
+                if ($hash === $usuario['password']) {
             // TODO 3 La condición del if es que el password sea correcto 	
             $_SESSION['autenticado'] = 'correcto';
             $_SESSION['permisos'] = str_split($usuario['permisos']);
@@ -30,6 +31,9 @@ if (isset($_POST['login'])) {
         header("Location: NoAuth.php");
     }
     mysqli_close($link);
+}else{
+    header("Location: login.php");
+}
 } else {
     ?>
     <html>
@@ -54,6 +58,8 @@ if (isset($_POST['login'])) {
                         <td> <input type = password name ='passwd'></td>
                     </tr>
                 </table><br>
+                <img src= captcha.php>
+                <input type= text name= 'valor'>
                 <input type=submit name = 'login' value = "LOGIN"><br><br><br>
             </form>
         </center>

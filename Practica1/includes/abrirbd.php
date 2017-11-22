@@ -1,8 +1,8 @@
 <?php
     $dbhost = 'localhost';
-    $dbuser = 'root';
-    $dbpass = '';
-    $dbname = 'datosmiw';
+    $dbuser = 'miw_sawdatos';
+    $dbpass = '*miw_nov2017*';
+    $dbname = 'miw_sawdatos';
 
     $link = mysqli_connect ($dbhost, $dbuser, $dbpass, $dbname);
 ?>
