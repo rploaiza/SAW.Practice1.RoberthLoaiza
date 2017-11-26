@@ -62,6 +62,7 @@ if($_SESSION['CAPTCHA']=== $_POST['valor']){
                 <input type= text name= 'valor'>
                 <input type=submit name = 'login' value = "LOGIN"><br><br><br>
             </form>
+            <a href =logincert.php> autenticación con certificado </a>
         </center>
     </body>
     </html>
